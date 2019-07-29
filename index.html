@@ -4,15 +4,37 @@
     </head>
     <body>
         <div id="app">
-            {{ message }}
+        <p>{{ message }}</p>
+        <p>{{howareyou()}}</p>
+        <p>
+        {{sayhello()}}
+        </p>
+        <p>
+        <a v-bind:href="link1">링크</a>
+        </p>
+        
         </div>
     </body>
+
     <script>
         new Vue({
         el: '#app',
         data: {
-            message: '안녕하세요 Vue!'
+            message: '안녕하세요 Vue!',
+            link1: "https://www.naver.com"
+        },
+        methods: {
+        howareyou: function()
+        {
+          return "how are you? baby"
+        },
+        sayhello: function()
+        {
+        return this.message
+        }
+        
         }
         });
+
     </script>
 </html>
