@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+<head>
+    <title>Rock Scissor Paper</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id=app>
+        <div class="container">
+                <div class="row">
+
+                  <div class="col-sm">
+                      
+                        <img   v-if="mychoice !== null"
+                        v-bind:src="'images/'+mychoice+'.jpg'" alt="" class="rounded float-left">
+                        <img v-else 
+                        src="images/question.jpg" alt="" class="rounded float-left">
+                        <h1 class="text-center"><strong>You</strong></h1>
+                    
+                  </div>
+                  <div class="col-sm">
+                    <h1 class="center-number"><strong>{{count}}</strong></h1>
+                  </div>
+                  <div class="col-sm">
+                        
+                        <img   v-if="comchoice !== null"
+                        v-bind:src="'images/'+comchoice+'.jpg'" alt="" class="rounded float-left">
+                        <img v-else 
+                        src="images/question.jpg" alt="" class="rounded float-left">
+                        <h1 class="text-center"><strong>Computer</strong></h1>
+                            
+                            
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="battle-wrap">
+                        <img 
+                        v-for='life in lifeofme'
+                        src="images/heart.jpg" alt="" class="heart">
+                        <img 
+                        v-for='life in 3-lifeofme'
+                        src="images/broken-heart.jpg" alt="" class="heart">
+   
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col">
+                            <div class="battle-wrap">
+                                    <img
+                                    v-for='life in lifeofcom'
+                                    src="images/heart.jpg" alt="" class="heart">
+                                    <img 
+                                    v-for='life in 3-lifeofcom'
+                                    src="images/broken-heart.jpg" alt="" class="heart">
+                     
+                             </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        
+                        <input type="radio" v-model="mychoice" value="scissor">가위
+                        <input type="radio" v-model="mychoice" value="rock">바위
+                        <input type="radio" v-model="mychoice" value="paper">보
+                        
+                        <div class="row">
+                            <div v-if="isselectable" class="col" >
+                                <button  class="start-btn" v-on:click="startGame">선택 완료!</button>
+                            </div>
+                        
+                        
+                            <div v-else class="loading " >기다리는 중...</div>
+                            
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        
+                    </div>
+                    <div class="col text-center">
+                        생각중...
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col log">
+                        <ul>
+                            <li v-bind:class="{'win-log' : log.winner == 'Me',
+                                                'defeat-log': log.winner == 'Computer',
+                                                'draw-log' : log.winner == 'no one'}"
+                                v-for="log in logs">{{log.message}}</li>
+
+                        </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            </body>
+            <script src="app.js">
+                </script>
+         
+
+</html>
